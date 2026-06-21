@@ -890,7 +890,7 @@ function updateHero() {
   if (DOM['hero-ring-pct']) DOM['hero-ring-pct'].textContent = Math.min(pct, 100) + '%';
   drawRing(pct);
 
-  const score = clamp(Math.round(100 - (total / (INDIAN_BASELINE_DAILY * 2)) * 100), 0, 100);
+  // const score = clamp(Math.round(100 - (total / (INDIAN_BASELINE_DAILY * 2)) * 100), 0, 100);
   profile.score = score;
   if (DOM['hero-score']) DOM['hero-score'].textContent = score + '/100';
   if (DOM['hero-streak']) DOM['hero-streak'].textContent = profile.streak + ' days';
@@ -1096,7 +1096,7 @@ function generateWrappedCards() {
   let minK = 'transport', minV = Infinity;
   for (const [k, v] of Object.entries(f)) { if (v < minV) { minV = v; minK = k; } }
 
-  const savedKg = Math.max(0, (INDIAN_BASELINE_DAILY - total) * 7);
+  // const savedKg = Math.max(0, (INDIAN_BASELINE_DAILY - total) * 7);
   const moneySaved = Math.round(savedKg * MONEY_PER_KG_SAVED);
   const weeklyChange = getWeeklyChange();
 
@@ -1181,15 +1181,15 @@ function generateInsights() {
   }
 
   // Insight 3: Comparison to baseline
-  const ratio = (total / INDIAN_BASELINE_DAILY * 100).toFixed(0);
-  if (total < INDIAN_BASELINE_DAILY) {
-    frag.appendChild(buildInsightCard('🌟', `Your footprint is ${100 - parseInt(ratio)}% below the Indian average of ${INDIAN_BASELINE_DAILY} kg CO₂/day.`, 'Great work! You\'re already doing better than most.'));
-  } else {
-    frag.appendChild(buildInsightCard('📊', `Your footprint is ${parseInt(ratio) - 100}% above the Indian average of ${INDIAN_BASELINE_DAILY} kg CO₂/day.`, `Focus on reducing ${CATEGORY_NAMES[topCat]} to get below average.`));
-  }
+  //const ratio = (total / INDIAN_BASELINE_DAILY * 100).toFixed(0);
+  //if (total < INDIAN_BASELINE_DAILY) {
+  frag.appendChild(buildInsightCard('🌟', `Your footprint is ${100 - parseInt(ratio)}% below the Indian average of ${INDIAN_BASELINE_DAILY} kg CO₂/day.`, 'Great work! You\'re already doing better than most.'));
+} else {
+  frag.appendChild(buildInsightCard('📊', `Your footprint is ${parseInt(ratio) - 100}% above the Indian average of ${INDIAN_BASELINE_DAILY} kg CO₂/day.`, `Focus on reducing ${CATEGORY_NAMES[topCat]} to get below average.`));
+}
 
-  container.textContent = '';
-  container.appendChild(frag);
+container.textContent = '';
+container.appendChild(frag);
 }
 
 /**
@@ -2318,7 +2318,7 @@ if (typeof module !== 'undefined' && module.exports) {
     saveDailySnapshot,
     updateStreak,
     EMISSION_FACTORS,
-    INDIAN_BASELINE_DAILY,
+    // INDIAN_BASELINE_DAILY,
     GLOBAL_FAIR_SHARE_ANNUAL,
     CATEGORY_NAMES,
     CATEGORY_EMOJIS,
