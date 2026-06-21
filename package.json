@@ -1,0 +1,32 @@
+{
+  "name": "canopy-carbon-tracker",
+  "version": "4.0.0",
+  "description": "Canopy — Personal Environmental Operating System. Track, visualize, and reduce your carbon footprint with stunning visuals and intelligent insights. Built for India.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint app.js",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "carbon",
+    "footprint",
+    "tracker",
+    "environment",
+    "sustainability",
+    "india",
+    "CO2",
+    "climate"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^3.2.0",
+    "jsdom": "^26.1.0",
+    "@vitest/coverage-v8": "^3.2.0",
+    "eslint": "^9.27.0"
+  }
+}

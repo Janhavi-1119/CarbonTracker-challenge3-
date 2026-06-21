@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Canopy — Your personal environmental operating system. Track, visualize, and reduce your carbon footprint with stunning visuals and intelligent insights. Built for India." />
+  <meta name="keywords" content="carbon footprint, carbon tracker, environment, sustainability, India, CO2, climate change" />
+  <meta name="author" content="Canopy Team" />
+  <meta name="theme-color" content="#050505" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';" />
+  <meta property="og:title" content="Canopy — Personal Environmental Operating System" />
+  <meta property="og:description" content="Track, visualize, and reduce your carbon footprint with stunning visuals and intelligent insights." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_IN" />
+  <title>Canopy — Personal Environmental Operating System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin referrerpolicy="strict-origin" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Skip Navigation Link for Accessibility -->
+  <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
+
+  <!-- Decorative overlays - hidden from assistive tech -->
+  <div id="grain-overlay" aria-hidden="true"></div>
+  <div id="ambient-orb-1" aria-hidden="true"></div>
+  <div id="ambient-orb-2" aria-hidden="true"></div>
+
+  <!-- ═══════════ SPLASH SCREEN ═══════════ -->
+  <div id="splash-screen" role="status" aria-label="Loading application">
+    <div class="splash-content">
+      <div class="splash-icon-wrap" aria-hidden="true">
+        <svg class="splash-leaf" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" stroke="url(#sg1)" stroke-width="1.5"/>
+          <path d="M20 4C20 4,30 12,30 20C30 28,20 36,20 36C20 36,10 28,10 20C10 12,20 4,20 4Z" fill="url(#sg2)" opacity="0.85"/>
+          <defs>
+            <linearGradient id="sg1" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6EE7B7"/><stop offset="1" stop-color="#065F46"/></linearGradient>
+            <linearGradient id="sg2" x1="20" y1="4" x2="20" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#34D399"/><stop offset="1" stop-color="#064E3B"/></linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <h1 class="splash-wordmark">Canopy</h1>
+      <p class="splash-tagline">Personal Environmental Intelligence</p>
+      <div class="splash-bar" role="progressbar" aria-label="Loading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="splash-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ AUTH SCREEN ═══════════ -->
+  <div id="auth-screen" class="hidden" role="dialog" aria-label="Sign in to Canopy" aria-modal="true">
+    <div class="auth-bg">
+      <div class="auth-glow" aria-hidden="true"></div>
+      <div class="auth-card">
+        <svg class="auth-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" stroke="url(#ag1)" stroke-width="1.5"/>
+          <path d="M20 4C20 4,30 12,30 20C30 28,20 36,20 36C20 36,10 28,10 20C10 12,20 4,20 4Z" fill="url(#ag2)" opacity="0.85"/>
+          <defs>
+            <linearGradient id="ag1" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6EE7B7"/><stop offset="1" stop-color="#065F46"/></linearGradient>
+            <linearGradient id="ag2" x1="20" y1="4" x2="20" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#34D399"/><stop offset="1" stop-color="#064E3B"/></linearGradient>
+          </defs>
+        </svg>
+        <h1 class="auth-h">Welcome to Canopy</h1>
+        <p class="auth-sub">Track, visualize, and reduce your environmental impact — built for India.</p>
+        <button class="g-btn" id="g-btn" type="button" aria-label="Continue with Google sign-in">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Continue with Google</span>
+        </button>
+        <p class="auth-fine">By continuing, you agree to our Terms &amp; Privacy Policy</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ ONBOARDING WIZARD (6 STEPS) ═══════════ -->
+  <div id="onboarding-wizard" class="wiz-overlay hidden" role="dialog" aria-label="Onboarding wizard" aria-modal="true">
+    <div class="wiz-card">
+      <div class="wiz-top">
+        <div class="wiz-logo-row">
+          <svg viewBox="0 0 40 40" fill="none" style="width:24px;height:24px;" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="#34D399" stroke-width="1.5"/><path d="M20 4C20 4,30 12,30 20C30 28,20 36,20 36C20 36,10 28,10 20C10 12,20 4,20 4Z" fill="#065F46" opacity="0.85"/></svg>
+          <span class="wiz-brand">Canopy</span>
+        </div>
+        <button class="wiz-skip" id="wiz-skip-btn" type="button" aria-label="Skip onboarding wizard">Skip →</button>
+      </div>
+      <div class="wiz-progress" role="progressbar" aria-label="Onboarding progress" aria-valuenow="1" aria-valuemin="1" aria-valuemax="6">
+        <div class="wiz-prog-fill" id="wiz-prog"></div>
+      </div>
+      <span class="wiz-step-lbl" id="wiz-step-lbl" aria-live="polite">1 / 6</span>
+
+      <div id="wiz-steps">
+        <!-- Step 1: Transport -->
+        <fieldset class="wiz-step" id="ws-1">
+          <legend class="sr-only">Step 1: Transportation</legend>
+          <div class="wiz-icon" aria-hidden="true">🚗</div>
+          <h2 class="wiz-title">How do you get around?</h2>
+          <p class="wiz-desc">Transportation is typically the largest source of emissions for urban Indians.</p>
+          <div class="wiz-fields">
+            <label class="wiz-lbl" id="lbl-transport-mode">Primary commute mode</label>
+            <div class="chip-grid" id="cg-transport" role="radiogroup" aria-labelledby="lbl-transport-mode">
+              <button class="chip" data-v="car" type="button" role="radio" aria-checked="false">🚗 Car</button>
+              <button class="chip" data-v="two-wheeler" type="button" role="radio" aria-checked="false">🏍️ Two-Wheeler</button>
+              <button class="chip" data-v="auto" type="button" role="radio" aria-checked="false">🛺 Auto</button>
+              <button class="chip" data-v="metro" type="button" role="radio" aria-checked="false">🚇 Metro</button>
+              <button class="chip" data-v="bus" type="button" role="radio" aria-checked="false">🚌 Bus</button>
+              <button class="chip" data-v="cycle" type="button" role="radio" aria-checked="false">🚲 Cycle</button>
+              <button class="chip" data-v="walk" type="button" role="radio" aria-checked="false">🚶 Walk</button>
+            </div>
+            <label class="wiz-lbl" for="wz-km">Weekly commute distance</label>
+            <div class="slider-row"><input type="range" class="premium-slider" id="wz-km" min="0" max="500" value="60" aria-label="Weekly commute distance in kilometers" aria-valuenow="60" aria-valuemin="0" aria-valuemax="500"><span class="slider-val" id="wz-v-km" aria-live="polite">60 km</span></div>
+          </div>
+        </fieldset>
+
+        <!-- Step 2: Food -->
+        <fieldset class="wiz-step hidden" id="ws-2">
+          <legend class="sr-only">Step 2: Food habits</legend>
+          <div class="wiz-icon" aria-hidden="true">🍛</div>
+          <h2 class="wiz-title">Your food habits</h2>
+          <p class="wiz-desc">Food production accounts for 26% of global greenhouse emissions.</p>
+          <div class="wiz-fields">
+            <label class="wiz-lbl" id="lbl-diet">Diet type</label>
+            <div class="chip-grid" id="cg-diet" role="radiogroup" aria-labelledby="lbl-diet">
+              <button class="chip" data-v="vegan" type="button" role="radio" aria-checked="false">🌱 Vegan</button>
+              <button class="chip" data-v="vegetarian" type="button" role="radio" aria-checked="false">🥦 Vegetarian</button>
+              <button class="chip" data-v="eggetarian" type="button" role="radio" aria-checked="false">🥚 Eggetarian</button>
+              <button class="chip" data-v="non-veg" type="button" role="radio" aria-checked="false">🍗 Non-Veg</button>
+              <button class="chip" data-v="heavy-meat" type="button" role="radio" aria-checked="false">🥩 Heavy Non-Veg</button>
+            </div>
+            <label class="wiz-lbl" for="wz-meat">Non-veg meals per week</label>
+            <div class="slider-row"><input type="range" class="premium-slider" id="wz-meat" min="0" max="21" value="4" aria-label="Non-veg meals per week" aria-valuenow="4" aria-valuemin="0" aria-valuemax="21"><span class="slider-val" id="wz-v-meat" aria-live="polite">4 meals</span></div>
+            <label class="wiz-lbl" for="wz-delivery">Food delivery orders per week</label>
+            <div class="slider-row"><input type="range" class="premium-slider" id="wz-delivery" min="0" max="14" value="3" aria-label="Food delivery orders per week" aria-valuenow="3" aria-valuemin="0" aria-valuemax="14"><span class="slider-val" id="wz-v-delivery" aria-live="polite">3 orders</span></div>
+          </div>
+        </fieldset>
+
+        <!-- Step 3: Energy -->
+        <fieldset class="wiz-step hidden" id="ws-3">
+          <legend class="sr-only">Step 3: Home energy</legend>
+          <div class="wiz-icon" aria-hidden="true">⚡</div>
+          <h2 class="wiz-title">Home energy</h2>
+          <p class="wiz-desc">India's coal-heavy grid makes electricity a key emission source.</p>
+          <div class="wiz-fields">
+            <label class="wiz-lbl" id="lbl-household">People in household</label>
+            <div class="chip-grid" id="cg-household" role="radiogroup" aria-labelledby="lbl-household">
+              <button class="chip" data-v="1" type="button" role="radio" aria-checked="false">1</button>
+              <button class="chip" data-v="2" type="button" role="radio" aria-checked="false">2</button>
+              <button class="chip" data-v="4" type="button" role="radio" aria-checked="false">3–4</button>
+              <button class="chip" data-v="6" type="button" role="radio" aria-checked="false">5+</button>
+            </div>
+            <label class="wiz-lbl" for="wz-elec">Monthly electricity bill (₹)</label>
+            <div class="slider-row"><input type="range" class="premium-slider" id="wz-elec" min="200" max="15000" step="100" value="2500" aria-label="Monthly electricity bill in rupees" aria-valuenow="2500" aria-valuemin="200" aria-valuemax="15000"><span class="slider-val" id="wz-v-elec" aria-live="polite">₹2500</span></div>
+            <label class="wiz-lbl" id="lbl-ac">AC usage in summer</label>
+            <div class="chip-grid" id="cg-ac" role="radiogroup" aria-labelledby="lbl-ac">
+              <button class="chip" data-v="none" type="button" role="radio" aria-checked="false">🌀 No AC</button>
+              <button class="chip" data-v="moderate" type="button" role="radio" aria-checked="false">❄️ Few hours</button>
+              <button class="chip" data-v="heavy" type="button" role="radio" aria-checked="false">🧊 All day</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Step 4: Shopping -->
+        <fieldset class="wiz-step hidden" id="ws-4">
+          <legend class="sr-only">Step 4: Shopping habits</legend>
+          <div class="wiz-icon" aria-hidden="true">📦</div>
+          <h2 class="wiz-title">Shopping habits</h2>
+          <p class="wiz-desc">Online shopping and fast fashion drive packaging and logistics emissions.</p>
+          <div class="wiz-fields">
+            <label class="wiz-lbl" for="wz-orders">Online orders per month</label>
+            <div class="slider-row"><input type="range" class="premium-slider" id="wz-orders" min="0" max="30" value="6" aria-label="Online orders per month" aria-valuenow="6" aria-valuemin="0" aria-valuemax="30"><span class="slider-val" id="wz-v-orders" aria-live="polite">6 orders</span></div>
+            <label class="wiz-lbl" id="lbl-clothing">Clothing items per year</label>
+            <div class="chip-grid" id="cg-clothing" role="radiogroup" aria-labelledby="lbl-clothing">
+              <button class="chip" data-v="5" type="button" role="radio" aria-checked="false">Minimal (1–5)</button>
+              <button class="chip" data-v="15" type="button" role="radio" aria-checked="false">Moderate (6–20)</button>
+              <button class="chip" data-v="35" type="button" role="radio" aria-checked="false">High (21–50)</button>
+              <button class="chip" data-v="60" type="button" role="radio" aria-checked="false">Very High (50+)</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Step 5: Travel -->
+        <fieldset class="wiz-step hidden" id="ws-5">
+          <legend class="sr-only">Step 5: Air travel</legend>
+          <div class="wiz-icon" aria-hidden="true">✈️</div>
+          <h2 class="wiz-title">Air travel</h2>
+          <p class="wiz-desc">A single flight can equal months of daily emissions.</p>
+          <div class="wiz-fields">
+            <label class="wiz-lbl" for="wz-flights">Flights per year</label>
+            <div class="slider-row"><input type="range" class="premium-slider" id="wz-flights" min="0" max="20" value="2" aria-label="Flights per year" aria-valuenow="2" aria-valuemin="0" aria-valuemax="20"><span class="slider-val" id="wz-v-flights" aria-live="polite">2 flights</span></div>
+            <label class="wiz-lbl" id="lbl-flighttype">Typical flight distance</label>
+            <div class="chip-grid" id="cg-flighttype" role="radiogroup" aria-labelledby="lbl-flighttype">
+              <button class="chip" data-v="domestic" type="button" role="radio" aria-checked="false">🇮🇳 Domestic</button>
+              <button class="chip" data-v="short-intl" type="button" role="radio" aria-checked="false">🌏 Short Intl</button>
+              <button class="chip" data-v="long-intl" type="button" role="radio" aria-checked="false">🌍 Long Intl</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Step 6: Waste & Water -->
+        <fieldset class="wiz-step hidden" id="ws-6">
+          <legend class="sr-only">Step 6: Waste and water</legend>
+          <div class="wiz-icon" aria-hidden="true">♻️</div>
+          <h2 class="wiz-title">Waste &amp; water</h2>
+          <p class="wiz-desc">Small changes in waste management and water use have a large cumulative impact.</p>
+          <div class="wiz-fields">
+            <label class="wiz-lbl" id="lbl-waste">Do you segregate waste?</label>
+            <div class="chip-grid" id="cg-waste" role="radiogroup" aria-labelledby="lbl-waste">
+              <button class="chip" data-v="yes" type="button" role="radio" aria-checked="false">✅ Yes</button>
+              <button class="chip" data-v="no" type="button" role="radio" aria-checked="false">❌ No</button>
+            </div>
+            <label class="wiz-lbl" for="wz-water">Daily water usage (litres)</label>
+            <div class="slider-row"><input type="range" class="premium-slider" id="wz-water" min="20" max="500" value="120" aria-label="Daily water usage in litres" aria-valuenow="120" aria-valuemin="20" aria-valuemax="500"><span class="slider-val" id="wz-v-water" aria-live="polite">120 L</span></div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="wiz-bottom">
+        <div class="wiz-dots" id="wiz-dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="wiz-btns">
+          <button class="wiz-back hidden" id="wiz-back" type="button" aria-label="Go back to previous step">← Back</button>
+          <button class="wiz-next" id="wiz-next" type="button" aria-label="Continue to next step">Continue →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ APP SHELL ═══════════ -->
+  <div class="app" id="app" class="hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+      <div class="sb-brand" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none" style="width:28px;height:28px;" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" stroke="url(#sbg)" stroke-width="1.5"/>
+          <path d="M20 4C20 4,30 12,30 20C30 28,20 36,20 36C20 36,10 28,10 20C10 12,20 4,20 4Z" fill="url(#sbf)" opacity="0.85"/>
+          <defs><linearGradient id="sbg" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6EE7B7"/><stop offset="1" stop-color="#065F46"/></linearGradient><linearGradient id="sbf" x1="20" y1="4" x2="20" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#34D399"/><stop offset="1" stop-color="#064E3B"/></linearGradient></defs>
+        </svg>
+        <span class="sb-name">Canopy</span>
+      </div>
+
+      <div class="sb-user" id="sb-user-btn" role="button" tabindex="0" aria-label="Open settings">
+        <div class="sb-avatar" id="sb-avatar"><span id="sb-initials">CU</span></div>
+        <div class="sb-user-info"><p class="sb-uname" id="sb-uname">Canopy User</p><p class="sb-urole">Canopy Explorer</p></div>
+        <span class="sb-chevron" aria-hidden="true">›</span>
+      </div>
+
+      <nav class="sb-nav" aria-label="Page navigation">
+        <button class="sb-item active" id="sn-home" data-page="home" type="button" aria-current="page" aria-label="Navigate to Home page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+          <span>Home</span>
+        </button>
+        <button class="sb-item" id="sn-earth" data-page="earth" type="button" aria-label="Navigate to Earth Twin page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>Earth Twin</span>
+        </button>
+        <button class="sb-item" id="sn-analytics" data-page="analytics" type="button" aria-label="Navigate to Analytics page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Analytics</span>
+        </button>
+        <button class="sb-item" id="sn-simulate" data-page="simulate" type="button" aria-label="Navigate to Simulate page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>Simulate</span>
+        </button>
+        <button class="sb-item" id="sn-legacy" data-page="legacy" type="button" aria-label="Navigate to Legacy page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span>Legacy</span>
+        </button>
+      </nav>
+
+      <footer class="sb-footer">
+        <div class="sb-budget" aria-label="Monthly carbon budget">
+          <div class="sb-budget-info"><span class="sb-budget-lbl">MONTHLY BUDGET</span><span class="sb-budget-val" id="sb-budget-val">0 / 200 kg</span></div>
+          <div class="sb-budget-track" role="progressbar" aria-label="Budget usage" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="sb-budget-fill" id="sb-budget-fill"></div></div>
+        </div>
+        <button class="sb-signout" id="signout-btn" type="button" aria-label="Sign out of Canopy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          Sign Out
+        </button>
+      </footer>
+    </aside>
+
+    <!-- MOBILE NAV -->
+    <nav class="mob-nav" aria-label="Mobile page navigation">
+      <button class="mn active" id="mn-home" data-page="home" type="button" aria-current="page" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg><span>Home</span></button>
+      <button class="mn" id="mn-earth" data-page="earth" type="button" aria-label="Earth Twin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg><span>Earth</span></button>
+      <button class="mn" id="mn-analytics" data-page="analytics" type="button" aria-label="Analytics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Stats</span></button>
+      <button class="mn" id="mn-simulate" data-page="simulate" type="button" aria-label="Simulate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg><span>Simulate</span></button>
+      <button class="mn" id="mn-legacy" data-page="legacy" type="button" aria-label="Legacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>Legacy</span></button>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main" id="main-scroll" role="main">
+      <div id="main-content">
+
+      <!-- ═══ HOME PAGE ═══ -->
+      <section class="pg active" id="pg-home" aria-label="Home dashboard">
+        <header class="pg-head">
+          <div><p class="pg-eyebrow" id="date-text"></p><h1 class="pg-title" id="greeting"></h1></div>
+          <div class="head-actions">
+            <button class="icon-btn" id="quick-log-btn" type="button" aria-label="Open quick activity log">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button class="icon-btn" id="notif-btn" type="button" aria-label="Open notifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <div class="notif-dot" id="notif-dot" aria-hidden="true"></div>
+            </button>
+          </div>
+        </header>
+
+        <!-- HERO CARD -->
+        <article class="hero-card" id="hero-card" aria-label="Daily carbon footprint summary">
+          <div class="hero-ring-wrap">
+            <canvas id="hero-ring" width="200" height="200" aria-label="Carbon budget ring chart"></canvas>
+            <div class="hero-ring-center" aria-hidden="true">
+              <span class="hero-ring-pct" id="hero-ring-pct">0%</span>
+              <span class="hero-ring-label">of daily budget</span>
+            </div>
+          </div>
+          <div class="hero-info">
+            <div class="hero-total-wrap" aria-live="polite">
+              <span class="hero-total" id="hero-total">0.0</span>
+              <span class="hero-total-unit">kg CO₂ today</span>
+            </div>
+            <div class="hero-metrics">
+              <div class="hero-metric">
+                <span class="hero-metric-val" id="hero-weekly-change">—</span>
+                <span class="hero-metric-lbl">vs last week</span>
+              </div>
+              <div class="hero-metric">
+                <span class="hero-metric-val" id="hero-score">—</span>
+                <span class="hero-metric-lbl">Carbon Score</span>
+              </div>
+              <div class="hero-metric">
+                <span class="hero-metric-val" id="hero-streak">—</span>
+                <span class="hero-metric-lbl">Day Streak</span>
+              </div>
+            </div>
+            <p class="hero-biggest" id="hero-biggest" aria-live="polite">Adjust the calculator below to see your footprint</p>
+          </div>
+        </article>
+
+        <!-- CARBON CALCULATOR -->
+        <h2 class="section-title" id="calc-section-title">Your Carbon Calculator</h2>
+        <div class="calc-grid" id="calc-grid" role="region" aria-labelledby="calc-section-title">
+
+          <!-- Transport -->
+          <article class="calc-card" id="calc-card-transport" aria-label="Transportation calculator">
+            <div class="calc-card-header">
+              <span class="calc-emoji" aria-hidden="true">🚗</span>
+              <span class="calc-cat-name">Transportation</span>
+              <span class="calc-cat-val" id="cc-val-transport" aria-live="polite">0.0 kg</span>
+            </div>
+            <label class="calc-label" id="lbl-calc-transport-mode">Mode</label>
+            <div class="chip-grid compact" role="radiogroup" aria-labelledby="lbl-calc-transport-mode">
+              <button class="chip on" data-v="two-wheeler" data-calc="transport-mode" type="button" role="radio" aria-checked="true">🏍️ Bike</button>
+              <button class="chip" data-v="car" data-calc="transport-mode" type="button" role="radio" aria-checked="false">🚗 Car</button>
+              <button class="chip" data-v="auto" data-calc="transport-mode" type="button" role="radio" aria-checked="false">🛺 Auto</button>
+              <button class="chip" data-v="metro" data-calc="transport-mode" type="button" role="radio" aria-checked="false">🚇 Metro</button>
+              <button class="chip" data-v="bus" data-calc="transport-mode" type="button" role="radio" aria-checked="false">🚌 Bus</button>
+            </div>
+            <label class="calc-label" for="calc-km">Daily distance (km)</label>
+            <div class="slider-row"><input type="range" class="premium-slider calc-slider" id="calc-km" min="0" max="100" value="10" aria-label="Daily commute distance in kilometers" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><span class="slider-val" id="calc-v-km">10</span></div>
+            <div class="calc-card-bar" aria-hidden="true"><div class="calc-bar-fill" id="cc-bar-transport"></div></div>
+          </article>
+
+          <!-- Food -->
+          <article class="calc-card" id="calc-card-food" aria-label="Food and diet calculator">
+            <div class="calc-card-header">
+              <span class="calc-emoji" aria-hidden="true">🍛</span>
+              <span class="calc-cat-name">Food &amp; Diet</span>
+              <span class="calc-cat-val" id="cc-val-food" aria-live="polite">0.0 kg</span>
+            </div>
+            <label class="calc-label" id="lbl-calc-meal-type">Diet type</label>
+            <div class="chip-grid compact" role="radiogroup" aria-labelledby="lbl-calc-meal-type">
+              <button class="chip on" data-v="mixed" data-calc="meal-type" type="button" role="radio" aria-checked="true">🍽️ Mixed</button>
+              <button class="chip" data-v="veg" data-calc="meal-type" type="button" role="radio" aria-checked="false">🥦 Veg</button>
+              <button class="chip" data-v="non-veg" data-calc="meal-type" type="button" role="radio" aria-checked="false">🍗 Non-Veg</button>
+              <button class="chip" data-v="vegan" data-calc="meal-type" type="button" role="radio" aria-checked="false">🌱 Vegan</button>
+            </div>
+            <label class="calc-label" for="calc-deliveries">Food deliveries today</label>
+            <div class="slider-row"><input type="range" class="premium-slider calc-slider" id="calc-deliveries" min="0" max="5" value="1" aria-label="Food deliveries today" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5"><span class="slider-val" id="calc-v-del">1</span></div>
+            <div class="calc-card-bar" aria-hidden="true"><div class="calc-bar-fill" id="cc-bar-food"></div></div>
+          </article>
+
+          <!-- Energy -->
+          <article class="calc-card" id="calc-card-energy" aria-label="Household energy calculator">
+            <div class="calc-card-header">
+              <span class="calc-emoji" aria-hidden="true">⚡</span>
+              <span class="calc-cat-name">Household Energy</span>
+              <span class="calc-cat-val" id="cc-val-energy" aria-live="polite">0.0 kg</span>
+            </div>
+            <label class="calc-label" for="calc-ac">AC hours today</label>
+            <div class="slider-row"><input type="range" class="premium-slider calc-slider" id="calc-ac" min="0" max="24" value="3" aria-label="AC hours today" aria-valuenow="3" aria-valuemin="0" aria-valuemax="24"><span class="slider-val" id="calc-v-ac">3h</span></div>
+            <label class="calc-label" for="calc-appliances">Heavy appliances used</label>
+            <div class="slider-row"><input type="range" class="premium-slider calc-slider" id="calc-appliances" min="0" max="10" value="2" aria-label="Heavy appliances used today" aria-valuenow="2" aria-valuemin="0" aria-valuemax="10"><span class="slider-val" id="calc-v-app">2</span></div>
+            <div class="calc-card-bar" aria-hidden="true"><div class="calc-bar-fill" id="cc-bar-energy"></div></div>
+          </article>
+
+          <!-- Shopping -->
+          <article class="calc-card" id="calc-card-shopping" aria-label="Shopping calculator">
+            <div class="calc-card-header">
+              <span class="calc-emoji" aria-hidden="true">📦</span>
+              <span class="calc-cat-name">Shopping</span>
+              <span class="calc-cat-val" id="cc-val-shopping" aria-live="polite">0.0 kg</span>
+            </div>
+            <label class="calc-label" for="calc-packages">Packages received today</label>
+            <div class="slider-row"><input type="range" class="premium-slider calc-slider" id="calc-packages" min="0" max="5" value="0" aria-label="Packages received today" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5"><span class="slider-val" id="calc-v-pkg">0</span></div>
+            <div class="calc-card-bar" aria-hidden="true"><div class="calc-bar-fill" id="cc-bar-shopping"></div></div>
+          </article>
+
+          <!-- Waste -->
+          <article class="calc-card" id="calc-card-waste" aria-label="Waste calculator">
+            <div class="calc-card-header">
+              <span class="calc-emoji" aria-hidden="true">🗑️</span>
+              <span class="calc-cat-name">Waste</span>
+              <span class="calc-cat-val" id="cc-val-waste" aria-live="polite">0.0 kg</span>
+            </div>
+            <label class="calc-label" id="lbl-calc-waste-seg">Segregate waste?</label>
+            <div class="chip-grid compact" role="radiogroup" aria-labelledby="lbl-calc-waste-seg">
+              <button class="chip on" data-v="yes" data-calc="waste-seg" type="button" role="radio" aria-checked="true">✅ Yes</button>
+              <button class="chip" data-v="no" data-calc="waste-seg" type="button" role="radio" aria-checked="false">❌ No</button>
+            </div>
+            <div class="calc-card-bar" aria-hidden="true"><div class="calc-bar-fill" id="cc-bar-waste"></div></div>
+          </article>
+
+          <!-- Water -->
+          <article class="calc-card" id="calc-card-water" aria-label="Water usage calculator">
+            <div class="calc-card-header">
+              <span class="calc-emoji" aria-hidden="true">💧</span>
+              <span class="calc-cat-name">Water Usage</span>
+              <span class="calc-cat-val" id="cc-val-water" aria-live="polite">0.0 kg</span>
+            </div>
+            <label class="calc-label" for="calc-water">Daily usage (litres)</label>
+            <div class="slider-row"><input type="range" class="premium-slider calc-slider" id="calc-water" min="20" max="500" value="120" aria-label="Daily water usage in litres" aria-valuenow="120" aria-valuemin="20" aria-valuemax="500"><span class="slider-val" id="calc-v-water">120L</span></div>
+            <div class="calc-card-bar" aria-hidden="true"><div class="calc-bar-fill" id="cc-bar-water"></div></div>
+          </article>
+        </div>
+
+        <!-- SPOTIFY WRAPPED - "This Week, You..." -->
+        <h2 class="section-title">This Week, You…</h2>
+        <div class="wrapped-scroll" id="wrapped-scroll" role="region" aria-label="Weekly performance summary cards"></div>
+
+        <!-- PERSONALIZED INSIGHTS -->
+        <h2 class="section-title">Personalized Insights</h2>
+        <div class="insights-stack" id="insights-stack" role="region" aria-label="Personalized carbon insights" aria-live="polite"></div>
+
+        <!-- WEEKLY LANDSCAPE -->
+        <div class="glass weekly-glass gap-top">
+          <div class="glass-head"><h3 class="glass-title">Weekly Landscape</h3><button class="link-btn" id="view-all-analytics-btn" type="button" aria-label="View all analytics">View all →</button></div>
+          <div class="bar-chart" id="weekly-bars" role="img" aria-label="Weekly carbon emissions bar chart"></div>
+          <div class="day-labels" id="weekly-days" aria-hidden="true"></div>
+          <div class="stat-row">
+            <div class="stat-box"><span class="stat-num" id="st-today">0 kg</span><span class="stat-lbl">Today</span></div>
+            <div class="stat-box hl"><span class="stat-num" id="st-week">0 kg</span><span class="stat-lbl">This Week</span></div>
+            <div class="stat-box"><span class="stat-num" id="st-delta">—</span><span class="stat-lbl">vs Last Week</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ EARTH TWIN PAGE ═══ -->
+      <section class="pg" id="pg-earth" aria-label="Earth Twin visualization">
+        <header class="pg-head"><div><p class="pg-eyebrow">YOUR DIGITAL EARTH</p><h1 class="pg-title">Earth Twin</h1></div></header>
+        <div class="earth-hero-glass">
+          <div class="earth-wrap">
+            <canvas id="earth-canvas" width="700" height="700" aria-label="Interactive Earth visualization showing environmental health based on your carbon footprint"></canvas>
+            <div class="earth-overlay" id="earth-overlay">
+              <span class="earth-status" id="earth-status">Healthy</span>
+              <span class="earth-temp" id="earth-temp">+0.8°C</span>
+            </div>
+          </div>
+          <div class="earth-indicators" id="earth-inds" role="region" aria-label="Environmental health indicators"></div>
+        </div>
+
+        <h2 class="section-title gap-top">If Everyone Lived Like You <span class="sec-badge">Global Impact</span></h2>
+        <div class="impact-grid" id="impact-grid" role="region" aria-label="Global impact metrics"></div>
+
+        <div class="glass" style="margin-top:2rem;">
+          <h3 class="glass-title">Earth in 2050</h3>
+          <p class="glass-sub">Based on your current habits</p>
+          <div class="future-compare">
+            <div class="future-col"><canvas id="earth-bad" width="260" height="260" aria-label="Earth in 2050 if current habits continue"></canvas><h4>If you continue</h4><p class="future-temp bad" id="ft-bad">+2.4°C</p></div>
+            <div class="future-vs" aria-hidden="true"><span>VS</span></div>
+            <div class="future-col"><canvas id="earth-good" width="260" height="260" aria-label="Earth in 2050 if you adopt green habits"></canvas><h4>If you go green</h4><p class="future-temp good" id="ft-good">+1.2°C</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ANALYTICS PAGE ═══ -->
+      <section class="pg" id="pg-analytics" aria-label="Analytics and insights">
+        <header class="pg-head">
+          <div><p class="pg-eyebrow">Deep Insights</p><h1 class="pg-title">Analytics</h1></div>
+          <div class="pill-group" role="tablist" aria-label="Time period selector">
+            <button class="pill on" id="tf-week" data-tf="week" type="button" role="tab" aria-selected="true" aria-label="View weekly data">Week</button>
+            <button class="pill" id="tf-month" data-tf="month" type="button" role="tab" aria-selected="false" aria-label="View monthly data">Month</button>
+            <button class="pill" id="tf-year" data-tf="year" type="button" role="tab" aria-selected="false" aria-label="View yearly data">Year</button>
+          </div>
+        </header>
+        <div class="glass"><h3 class="glass-title">Emission Breakdown</h3><p class="glass-sub">Where your carbon comes from</p><div class="flow-bars" id="flow-bars" role="region" aria-label="Emission breakdown by category"></div><div class="flow-footer"><span class="flow-total" id="flow-total">0 kg</span><span class="flow-lbl-text">CO₂ Total</span><span class="trend-tag" id="flow-trend">—</span></div></div>
+        <div class="glass" style="margin-top:1.5rem;"><h3 class="glass-title">Activity Heatmap</h3><p class="glass-sub">Last 84 days</p><div class="heatmap" id="heatmap" role="img" aria-label="Activity heatmap showing carbon emissions over last 84 days"></div><div class="heatmap-key" aria-hidden="true"><span>Low</span><div class="hkey-bar"></div><span>High</span></div></div>
+        <div class="glass" style="margin-top:1.5rem;"><h3 class="glass-title">Category Ranking</h3><div class="ranking" id="ranking" role="list" aria-label="Carbon emission categories ranked by amount"></div></div>
+        <div class="glass" style="margin-top:1.5rem;"><h3 class="glass-title">Projection</h3><p class="glass-sub">Where you're headed</p><div class="forecast-chart" id="forecast-chart" role="img" aria-label="Carbon emission projection chart"></div><div class="forecast-scenarios" id="forecast-sc"></div></div>
+      </section>
+
+      <!-- ═══ SIMULATE PAGE ═══ -->
+      <section class="pg" id="pg-simulate" aria-label="Carbon simulation tool">
+        <header class="pg-head"><div><p class="pg-eyebrow">Carbon Twin</p><h1 class="pg-title">Simulate Changes</h1></div></header>
+        <div class="glass sim-glass">
+          <h3 class="glass-title">What if you changed your habits?</h3>
+          <p class="glass-sub">Adjust the sliders to see your future carbon self.</p>
+          <div class="sim-time-pills" role="tablist" aria-label="Simulation time period">
+            <button class="pill on" data-months="1" type="button" role="tab" aria-selected="true">1 Month</button>
+            <button class="pill" data-months="12" type="button" role="tab" aria-selected="false">1 Year</button>
+            <button class="pill" data-months="60" type="button" role="tab" aria-selected="false">5 Years</button>
+          </div>
+          <div class="sim-layout">
+            <div class="sim-sliders">
+              <div class="sim-row"><div class="sim-info"><label for="sim-transit">🚌 Car → Public Transit</label><span class="sim-metric" id="sm-transit" aria-live="polite">0 days/wk</span></div><input type="range" class="premium-slider accent-green sim-slider" id="sim-transit" min="0" max="7" value="0" aria-label="Days per week switching to public transit" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7"></div>
+              <div class="sim-row"><div class="sim-info"><label for="sim-veg">🥦 Non-veg → Veg meals</label><span class="sim-metric" id="sm-veg" aria-live="polite">0 meals/wk</span></div><input type="range" class="premium-slider accent-green sim-slider" id="sim-veg" min="0" max="21" value="0" aria-label="Vegetarian meals per week" aria-valuenow="0" aria-valuemin="0" aria-valuemax="21"></div>
+              <div class="sim-row"><div class="sim-info"><label for="sim-solar">☀️ Switch to solar</label><span class="sim-metric" id="sm-solar" aria-live="polite">No</span></div><input type="range" class="premium-slider accent-green sim-slider" id="sim-solar" min="0" max="1" value="0" aria-label="Switch to solar energy" aria-valuenow="0" aria-valuemin="0" aria-valuemax="1"></div>
+              <div class="sim-row"><div class="sim-info"><label for="sim-ev">🔋 Switch to EV</label><span class="sim-metric" id="sm-ev" aria-live="polite">No</span></div><input type="range" class="premium-slider accent-green sim-slider" id="sim-ev" min="0" max="1" value="0" aria-label="Switch to electric vehicle" aria-valuenow="0" aria-valuemin="0" aria-valuemax="1"></div>
+              <div class="sim-row"><div class="sim-info"><label for="sim-fly">✈️ Fewer flights/year</label><span class="sim-metric" id="sm-fly" aria-live="polite">0</span></div><input type="range" class="premium-slider accent-green sim-slider" id="sim-fly" min="0" max="10" value="0" aria-label="Fewer flights per year" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10"></div>
+            </div>
+            <div class="sim-results" aria-live="polite">
+              <div class="sim-pair">
+                <div class="sim-box"><span class="sim-lbl">Current You</span><span class="sim-big" id="sim-cur">0</span><span class="sim-unit">kg CO₂</span></div>
+                <div class="sim-arrow" aria-hidden="true">→</div>
+                <div class="sim-box green-glow"><span class="sim-lbl">Future You</span><span class="sim-big green" id="sim-fut">0</span><span class="sim-unit">kg CO₂</span></div>
+              </div>
+              <div class="sim-saves" id="sim-saves"></div>
+            </div>
+          </div>
+          <div class="sim-banner hidden" id="sim-banner" role="status"><span id="sim-banner-txt"></span></div>
+        </div>
+
+        <h2 class="section-title gap-top">AI Recommendations</h2>
+        <div class="recs-stack" id="recs-stack" role="region" aria-label="AI-generated recommendations"></div>
+        <h2 class="section-title gap-top-sm">Active Challenges</h2>
+        <div class="challenges-stack" id="challenges-stack" role="region" aria-label="Active sustainability challenges"></div>
+      </section>
+
+      <!-- ═══ LEGACY PAGE ═══ -->
+      <section class="pg" id="pg-legacy" aria-label="Your environmental legacy">
+        <header class="pg-head"><div><p class="pg-eyebrow">Your Legacy</p><h1 class="pg-title">Legacy</h1></div></header>
+        <div class="glass">
+          <div class="prof-top">
+            <div class="prof-av-wrap"><div class="prof-av-ring"><div class="prof-av" id="prof-av"><span id="prof-initials">CU</span></div></div><div class="prof-streak-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span id="prof-streak">0 days</span></div></div>
+            <div class="prof-info"><h2 id="prof-name">Canopy User</h2><p class="prof-since" id="prof-since">Canopy Explorer</p>
+              <div class="prof-stats">
+                <div class="ps"><span class="ps-val" id="ps-saved">0 kg</span><span class="ps-lbl">CO₂ Saved</span></div>
+                <div class="ps"><span class="ps-val" id="ps-score">0</span><span class="ps-lbl">Score</span></div>
+                <div class="ps"><span class="ps-val" id="ps-money">₹0</span><span class="ps-lbl">Saved</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="glass" style="margin-top:1.5rem;"><h3 class="glass-title">Real World Impact</h3><p class="glass-sub">What your saved carbon equals</p><div class="equiv-grid" id="equiv-grid" role="region" aria-label="Real world equivalents of your carbon savings"></div></div>
+        <div class="glass" style="margin-top:1.5rem;"><h3 class="glass-title">Milestones</h3><div class="badge-grid" id="badge-grid" role="list" aria-label="Achievement milestones"></div></div>
+        <div class="glass" style="margin-top:1.5rem;"><h3 class="glass-title">Monthly Report</h3><p class="glass-sub" id="report-month"></p><div class="report-body" id="report-body" role="region" aria-label="Monthly carbon report"></div>
+          <div class="report-actions">
+            <button class="outline-btn" id="download-report-btn" type="button" aria-label="Download monthly report as CSV">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download Report
+            </button>
+            <button class="outline-btn" id="export-data-btn" type="button" aria-label="Export all carbon data as JSON">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Export Data
+            </button>
+          </div>
+        </div>
+      </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ═══════════ QUICK LOG MODAL ═══════════ -->
+  <div class="modal-bg" id="quick-log-modal" role="dialog" aria-label="Quick activity log" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head"><h2>Quick Log</h2><button class="x-btn" id="close-quick-log-btn" type="button" aria-label="Close quick log dialog">×</button></div>
+      <div class="modal-body">
+        <div class="ql-tabs" role="tablist" aria-label="Activity type tabs">
+          <button class="ql-tab on" data-t="commute" type="button" role="tab" aria-selected="true" aria-controls="ql-commute">🚗 Commute</button>
+          <button class="ql-tab" data-t="meal" type="button" role="tab" aria-selected="false" aria-controls="ql-meal">🍛 Meal</button>
+          <button class="ql-tab" data-t="purchase" type="button" role="tab" aria-selected="false" aria-controls="ql-purchase">📦 Purchase</button>
+          <button class="ql-tab" data-t="flight" type="button" role="tab" aria-selected="false" aria-controls="ql-flight">✈️ Flight</button>
+        </div>
+        <div class="ql-pane" id="ql-commute" role="tabpanel" aria-labelledby="commute-tab">
+          <label class="wiz-lbl" id="lbl-ql-vehicle">Vehicle type</label>
+          <div class="chip-grid compact" role="radiogroup" aria-labelledby="lbl-ql-vehicle"><button class="chip on" data-v="two-wheeler" data-group="ql-vehicle" type="button" role="radio" aria-checked="true">🏍️ Two-Wheeler</button><button class="chip" data-v="car" data-group="ql-vehicle" type="button" role="radio" aria-checked="false">🚗 Car</button><button class="chip" data-v="auto" data-group="ql-vehicle" type="button" role="radio" aria-checked="false">🛺 Auto</button><button class="chip" data-v="metro" data-group="ql-vehicle" type="button" role="radio" aria-checked="false">🚇 Metro</button><button class="chip" data-v="bus" data-group="ql-vehicle" type="button" role="radio" aria-checked="false">🚌 Bus</button></div>
+          <label class="wiz-lbl" for="ql-km">Distance (km)</label>
+          <div class="slider-row"><input type="range" class="premium-slider" id="ql-km" min="1" max="100" value="10" aria-label="Commute distance in kilometers" aria-valuenow="10" aria-valuemin="1" aria-valuemax="100"><span class="slider-val" id="ql-km-val" aria-live="polite">10 km</span></div>
+        </div>
+        <div class="ql-pane hidden" id="ql-meal" role="tabpanel" aria-labelledby="meal-tab">
+          <label class="wiz-lbl" id="lbl-ql-meal">Meal type</label>
+          <div class="chip-grid compact" role="radiogroup" aria-labelledby="lbl-ql-meal"><button class="chip on" data-v="veg" data-group="ql-meal" type="button" role="radio" aria-checked="true">🥦 Veg</button><button class="chip" data-v="egg" data-group="ql-meal" type="button" role="radio" aria-checked="false">🥚 Egg</button><button class="chip" data-v="non-veg" data-group="ql-meal" type="button" role="radio" aria-checked="false">🍗 Non-Veg</button></div>
+          <label class="wiz-lbl" id="lbl-ql-source">Sourcing</label>
+          <div class="chip-grid compact" role="radiogroup" aria-labelledby="lbl-ql-source"><button class="chip on" data-v="home" data-group="ql-source" type="button" role="radio" aria-checked="true">🏠 Home</button><button class="chip" data-v="delivery" data-group="ql-source" type="button" role="radio" aria-checked="false">📱 Delivery</button><button class="chip" data-v="dine-out" data-group="ql-source" type="button" role="radio" aria-checked="false">🍽️ Dine Out</button></div>
+        </div>
+        <div class="ql-pane hidden" id="ql-purchase" role="tabpanel" aria-labelledby="purchase-tab">
+          <label class="wiz-lbl" for="ql-amount">Amount (₹)</label>
+          <div class="slider-row"><input type="range" class="premium-slider" id="ql-amount" min="100" max="10000" step="100" value="500" aria-label="Purchase amount in rupees" aria-valuenow="500" aria-valuemin="100" aria-valuemax="10000"><span class="slider-val" id="ql-amount-val" aria-live="polite">₹500</span></div>
+          <label class="wiz-lbl" id="lbl-ql-cat">Category</label>
+          <div class="chip-grid compact" role="radiogroup" aria-labelledby="lbl-ql-cat"><button class="chip on" data-v="electronics" data-group="ql-cat" type="button" role="radio" aria-checked="true">📱 Electronics</button><button class="chip" data-v="clothing" data-group="ql-cat" type="button" role="radio" aria-checked="false">👕 Clothing</button><button class="chip" data-v="groceries" data-group="ql-cat" type="button" role="radio" aria-checked="false">🛒 Groceries</button></div>
+        </div>
+        <div class="ql-pane hidden" id="ql-flight" role="tabpanel" aria-labelledby="flight-tab">
+          <label class="wiz-lbl" id="lbl-ql-fly">Flight type</label>
+          <div class="chip-grid compact" role="radiogroup" aria-labelledby="lbl-ql-fly"><button class="chip on" data-v="domestic" data-group="ql-fly" type="button" role="radio" aria-checked="true">🇮🇳 Domestic</button><button class="chip" data-v="intl" data-group="ql-fly" type="button" role="radio" aria-checked="false">🌍 International</button></div>
+        </div>
+      </div>
+      <div class="modal-foot"><button class="primary-btn full" id="submit-quick-log-btn" type="button" aria-label="Submit activity log entry">Log Activity</button></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DRAWERS ═══════════ -->
+  <div class="drawer-bg" id="drawer-settings" role="dialog" aria-label="Settings" aria-modal="true" aria-hidden="true">
+    <div class="drawer">
+      <div class="drawer-head"><h2>Settings</h2><button class="x-btn" id="close-settings-btn" type="button" aria-label="Close settings">×</button></div>
+      <div class="drawer-body">
+        <p class="settings-h">Profile</p>
+        <div class="field"><label for="set-name">Display Name</label><input type="text" class="fi" id="set-name" value="" maxlength="50" autocomplete="name" aria-required="true"></div>
+        <div class="field"><label for="set-budget">Monthly Budget (kg CO₂)</label><input type="number" class="fi" id="set-budget" value="200" min="50" max="1000" aria-required="true"></div>
+      </div>
+      <div class="drawer-foot"><button class="primary-btn full" id="save-settings-btn" type="button" aria-label="Save settings">Save Settings</button></div>
+    </div>
+  </div>
+  <div class="drawer-bg" id="drawer-notifs" role="dialog" aria-label="Notifications" aria-modal="true" aria-hidden="true">
+    <div class="drawer">
+      <div class="drawer-head"><h2>Notifications</h2><button class="x-btn" id="close-notifs-btn" type="button" aria-label="Close notifications">×</button></div>
+      <div class="drawer-body" id="notifs-body"></div>
+      <div class="drawer-foot"><button class="outline-btn full" id="mark-all-read-btn" type="button" aria-label="Mark all notifications as read">Mark All Read</button></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+    <span id="toast-text">Done.</span>
+  </div>
+
+  <!-- Screen reader only live region for dynamic updates -->
+  <div id="sr-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
