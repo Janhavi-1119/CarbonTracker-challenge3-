@@ -1,4 +1,4 @@
-﻿// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // CANOPY 4.0 — PREMIUM APPLICATION ENGINE
 // All calculations derived from user inputs. Zero dummy data.
 // Modular architecture with security, accessibility, and efficiency.
@@ -1181,8 +1181,8 @@ function generateInsights() {
   }
 
   // Insight 3: Comparison to baseline
-  //const ratio = (total / INDIAN_BASELINE_DAILY * 100).toFixed(0);
-  //if (total < INDIAN_BASELINE_DAILY) {
+  const ratio = (total / INDIAN_BASELINE_DAILY * 100).toFixed(0);
+  if (total < INDIAN_BASELINE_DAILY) {
   frag.appendChild(buildInsightCard('🌟', `Your footprint is ${100 - parseInt(ratio)}% below the Indian average of ${INDIAN_BASELINE_DAILY} kg CO₂/day.`, 'Great work! You\'re already doing better than most.'));
 } else {
   frag.appendChild(buildInsightCard('📊', `Your footprint is ${parseInt(ratio) - 100}% above the Indian average of ${INDIAN_BASELINE_DAILY} kg CO₂/day.`, `Focus on reducing ${CATEGORY_NAMES[topCat]} to get below average.`));
