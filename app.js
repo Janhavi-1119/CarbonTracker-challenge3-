@@ -1,4 +1,4 @@
-// ═══════════════════════════════════════════════════
+﻿// ═══════════════════════════════════════════════════
 // CANOPY 4.0 — PREMIUM APPLICATION ENGINE
 // All calculations derived from user inputs. Zero dummy data.
 // Modular architecture with security, accessibility, and efficiency.
@@ -1933,7 +1933,7 @@ function generateChallenges() {
 
 function updateProfileUI() {
   const total = getTotal();
-  const savedVsBaseline = Math.max(0, (INDIAN_BASELINE_DAILY - total));
+  // const savedVsBaseline = Math.max(0, (INDIAN_BASELINE_DAILY - total));
   const totalSavedKg = +(savedVsBaseline * profile.streak).toFixed(0);
   const moneySaved = Math.round(totalSavedKg * MONEY_PER_KG_SAVED);
   profile.totalSaved = totalSavedKg;
